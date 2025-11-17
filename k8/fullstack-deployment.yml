@@ -28,7 +28,7 @@ spec:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: exam     # ⚠️ change this for production
+              value: exam     
             - name: MYSQL_DATABASE
               value: examdb
           volumeMounts:
@@ -71,7 +71,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: munnakumar32990/2300032990-lab-backend:latest  # <-- change this
+          image: munnakumar32990/2300032990-lab-backend:latest 
           ports:
             - containerPort: 2000
 ---
@@ -87,7 +87,7 @@ spec:
     - protocol: TCP
       port: 2000
       targetPort: 2000
-      nodePort: 30072        # Optional fixed NodePort (range 30000–32767)
+      nodePort: 30072       
   type: NodePort
 ---
 # ===========================
@@ -110,12 +110,9 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: munnakumar32990/2300032990-lab-backend:latest  # <-- change this
+          image: munnakumar32990/2300032990-lab-frontend:latest 
           ports:
             - containerPort: 80
-          env:
-            - name: VITE_API_URL
-              value: "http://localhost:30072"  # Points to backend NodePort
 ---
 apiVersion: v1
 kind: Service
@@ -129,5 +126,5 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-      nodePort: 30071        # Optional fixed NodePort (range 30000–32767)
+      nodePort: 30071        
   type: NodePort
